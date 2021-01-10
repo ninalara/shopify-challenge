@@ -1,5 +1,5 @@
-import React from "react";
-import { Movie } from "../types/Movie";
+import React from 'react';
+import { Movie } from '../types/Movie';
 
 export interface MovieCellProps {
     movie: Movie;
@@ -7,16 +7,18 @@ export interface MovieCellProps {
 
 class MovieCell extends React.Component<MovieCellProps> {
     private movie: Movie;
-    constructor(props: MovieCellProps) {    
-        super(props);    
+    constructor(props: MovieCellProps) {
+        super(props);
         const { movie } = this.props;
         this.movie = movie;
     }
     render() {
-      const movie: Movie = this.movie;  
-      return (
-          <p>{movie.title} ({movie.year})</p>
-      );
+        const movie: Movie = this.movie;
+        return (
+            <p>
+                {movie.title} ({movie.year})
+            </p>
+        );
     }
 }
 
