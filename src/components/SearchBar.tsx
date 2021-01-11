@@ -1,18 +1,21 @@
 import React from 'react';
+import useMovieResults from '../services/useMovieResults.service';
+import { Movies } from '../types/Movie';
 
 export interface SearchBarProps {
     searchedTitle: string;
-    onFilterTextChange: any;
+    onSearchedTitleChange: (searchedTitle: string) => void;
 }
 
 class SearchBar extends React.Component<SearchBarProps> {
     constructor(props: SearchBarProps) {
         super(props);
         this.handleSearchedTitleChange = this.handleSearchedTitleChange.bind(this);
+        const xxx = new useMovieResults();
     }
 
     handleSearchedTitleChange(event: React.ChangeEvent<HTMLInputElement>) {
-        this.props.onFilterTextChange(event.target.value);
+        this.props.onSearchedTitleChange(event.target.value);
     }
 
     render(): JSX.Element {

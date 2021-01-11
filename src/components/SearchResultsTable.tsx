@@ -1,24 +1,25 @@
 import React from 'react';
+import useMovieResults from '../services/useMovieResults.service';
 import { Movies } from '../types/Movie';
 import SearchResultsRow from './SearchResultsRow';
 
 export interface SearchResultsTableProps {
-    searchResults: Movies;
     searchedTitle: string;
 }
 class SearchResultsTable extends React.Component<SearchResultsTableProps> {
     private searchResults: Movies;
+    private api = new useMovieResults();
     constructor(props: SearchResultsTableProps) {
         super(props);
-        const { searchResults } = this.props;
-        this.searchResults = searchResults;
+        this.searchResults = [];
     }
 
     render(): JSX.Element {
         const searchedTitle = this.props.searchedTitle;
+        const searchResults = this.api.getProducts(searchedTitle);
         const rows: any = [];
 
-        this.props.searchResults.forEach((searchResult) => {
+        this.searchResults.forEach((searchResult) => {
             console.log(searchedTitle);
             if (searchResult.title.indexOf(searchedTitle) === -1) {
                 return;

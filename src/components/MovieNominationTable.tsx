@@ -4,28 +4,33 @@ import SearchResultsTable from './SearchResultsTable';
 import SearchBar from './SearchBar';
 import NominatedTable from './NominatedTable';
 
-export interface MovieNominationTableProps {
-    searchResults: Movies;
-}
 export interface MovieNominationTableState {
     searchedTitle: string;
+    searchResults: Movies;
 }
 
-class MovieNominationTable extends React.Component<MovieNominationTableProps, MovieNominationTableState> {
+class MovieNominationTable extends React.Component<Record<string, never>, MovieNominationTableState> {
     private searchResults: Movies;
-    constructor(props: MovieNominationTableProps) {
-        super(props);
+    constructor() {
+        super({});
         const { searchResults } = this.props;
         this.searchResults = searchResults;
         this.state = {
             searchedTitle: '',
+            searchResults: [],
         };
-        this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+        this.handleSearchedTitleChange = this.handleSearchedTitleChange.bind(this);
     }
 
-    handleFilterTextChange(searchedTitle: string): void {
+    handleSearchedTitleChange(searchedTitle: string): void {
         this.setState({
             searchedTitle: searchedTitle,
+        });
+    }
+
+    handleSearchResultsChange(searchResults: Movies): void {
+        this.setState({
+            searchResults: searchResults,
         });
     }
 
@@ -33,17 +38,17 @@ class MovieNominationTable extends React.Component<MovieNominationTableProps, Mo
         return (
             <div>
                 <h2>The Shoppies</h2>
-                <SearchBar searchedTitle={this.state.searchedTitle} onFilterTextChange={this.handleFilterTextChange} />
+                <SearchBar
+                    searchedTitle={this.state.searchedTitle}
+                    onSearchedTitleChange={this.handleSearchedTitleChange}
+                />
                 <tr>
                     <tbody>
-                        <SearchResultsTable
-                            searchResults={this.searchResults}
-                            searchedTitle={this.state.searchedTitle}
-                        />
+                        <SearchResultsTable searchedTitle={this.state.searchedTitle} />
                     </tbody>
                     <th> </th>
                     <tbody>
-                        <NominatedTable nominatedMovies={this.searchResults} />
+                        <NominatedTable nominatedMovies={this.state.searchResults} />
                     </tbody>
                 </tr>
             </div>
