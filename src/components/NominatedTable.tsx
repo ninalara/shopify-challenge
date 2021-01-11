@@ -1,24 +1,24 @@
 import React from 'react';
 import { Movies } from '../types/Movie';
-import NominatedMoviesRow from './NominatedMoviesRow';
+import NominatedRow from './NominatedRow';
 
-export interface NominatedMoviesTableProps {
+export interface NominatedTableProps {
     nominatedMovies: Movies;
 }
 
-class NominatedMoviesTable extends React.Component<NominatedMoviesTableProps> {
+class NominatedTable extends React.Component<NominatedTableProps> {
     private nominatedMovies: Movies;
-    constructor(props: NominatedMoviesTableProps) {
+    constructor(props: NominatedTableProps) {
         super(props);
         const { nominatedMovies } = this.props;
         this.nominatedMovies = nominatedMovies;
     }
 
-    render() {
+    render(): JSX.Element {
         const rows: any = [];
 
         this.nominatedMovies.forEach((nominatedMovie) => {
-            rows.push(<NominatedMoviesRow nominatedMovie={nominatedMovie} />);
+            rows.push(<NominatedRow nominatedMovie={nominatedMovie} key={nominatedMovie.imdbID} />);
         });
 
         return (
@@ -30,4 +30,4 @@ class NominatedMoviesTable extends React.Component<NominatedMoviesTableProps> {
     }
 }
 
-export default NominatedMoviesTable;
+export default NominatedTable;

@@ -12,7 +12,7 @@ class MovieCell extends React.Component<MovieCellProps> {
         const { movie } = this.props;
         this.movie = movie;
     }
-    render() {
+    render(): JSX.Element {
         const movie: Movie = this.movie;
         return (
             <p>

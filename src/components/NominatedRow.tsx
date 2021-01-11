@@ -2,33 +2,31 @@ import React from 'react';
 import { Movie } from '../types/Movie';
 import MovieCell from './MovieCell';
 
-export interface NominatedMoviesRowProps {
+export interface NominatedRowProps {
     nominatedMovie: Movie;
 }
 
-class NominatedMoviesRow extends React.Component<NominatedMoviesRowProps> {
+class NominatedRow extends React.Component<NominatedRowProps> {
     private nominatedMovie: Movie;
-    constructor(props: NominatedMoviesRowProps) {
+    constructor(props: NominatedRowProps) {
         super(props);
         const { nominatedMovie } = this.props;
         this.nominatedMovie = nominatedMovie;
     }
-    render() {
+    render(): JSX.Element {
         const nominatedMovie: Movie = this.nominatedMovie;
 
         return (
             <tr>
                 <td>
-                    {' '}
-                    <MovieCell movie={nominatedMovie} />{' '}
+                    <MovieCell movie={nominatedMovie} />
                 </td>
                 <td>
-                    {' '}
-                    <button type="button">Remove</button>{' '}
+                    <button type="button">Remove</button>
                 </td>
             </tr>
         );
     }
 }
 
-export default NominatedMoviesRow;
+export default NominatedRow;

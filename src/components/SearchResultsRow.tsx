@@ -13,18 +13,16 @@ class SearchResultsRow extends React.Component<SearchResultsRowProps> {
         const { searchResult } = this.props;
         this.searchResult = searchResult;
     }
-    render() {
+    render(): JSX.Element {
         const searchResult: Movie = this.searchResult;
 
         return (
             <tr>
                 <td>
-                    {' '}
-                    <MovieCell movie={searchResult} />{' '}
+                    <MovieCell movie={searchResult} />
                 </td>
                 <td>
-                    {' '}
-                    <button type="button">Nominate</button>{' '}
+                    <button type="button">Nominate</button>
                 </td>
             </tr>
         );

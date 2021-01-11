@@ -4,8 +4,8 @@ import SearchResultsRow from './SearchResultsRow';
 
 export interface SearchResultsTableProps {
     searchResults: Movies;
+    searchedTitle: string;
 }
-
 class SearchResultsTable extends React.Component<SearchResultsTableProps> {
     private searchResults: Movies;
     constructor(props: SearchResultsTableProps) {
@@ -14,11 +14,16 @@ class SearchResultsTable extends React.Component<SearchResultsTableProps> {
         this.searchResults = searchResults;
     }
 
-    render() {
+    render(): JSX.Element {
+        const searchedTitle = this.props.searchedTitle;
         const rows: any = [];
 
-        this.searchResults.forEach((searchResult) => {
-            rows.push(<SearchResultsRow searchResult={searchResult} />);
+        this.props.searchResults.forEach((searchResult) => {
+            console.log(searchedTitle);
+            if (searchResult.title.indexOf(searchedTitle) === -1) {
+                return;
+            }
+            rows.push(<SearchResultsRow searchResult={searchResult} key={searchResult.imdbID} />);
         });
 
         return (
