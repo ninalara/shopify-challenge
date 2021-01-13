@@ -1,8 +1,7 @@
 import React from 'react';
 import { Movies } from '../types/Movie';
-import SearchResultsTable from './SearchResultsTable';
+import SearchResultsFC from './SearchResultsFC';
 import SearchBar from './SearchBar';
-import NominatedTable from './NominatedTable';
 
 export interface MovieNominationTableState {
     searchedTitle: string;
@@ -44,12 +43,12 @@ class MovieNominationTable extends React.Component<Record<string, never>, MovieN
                 />
                 <tr>
                     <tbody>
-                        <SearchResultsTable searchedTitle={this.state.searchedTitle} />
+                        <SearchResultsFC searchedTitle={this.state.searchedTitle} />
                     </tbody>
-                    <th> </th>
+                    {/* <th> </th>
                     <tbody>
                         <NominatedTable nominatedMovies={this.state.searchResults} />
-                    </tbody>
+                    </tbody> */}
                 </tr>
             </div>
         );

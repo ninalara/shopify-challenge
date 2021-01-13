@@ -1,7 +1,4 @@
 import React from 'react';
-import useMovieResults from '../services/useMovieResults.service';
-import { Movies } from '../types/Movie';
-
 export interface SearchBarProps {
     searchedTitle: string;
     onSearchedTitleChange: (searchedTitle: string) => void;
@@ -13,7 +10,7 @@ class SearchBar extends React.Component<SearchBarProps> {
         this.handleSearchedTitleChange = this.handleSearchedTitleChange.bind(this);
     }
 
-    handleSearchedTitleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    handleSearchedTitleChange(event: React.ChangeEvent<HTMLInputElement>): void {
         this.props.onSearchedTitleChange(event.target.value);
     }
 
