@@ -16,7 +16,7 @@ class MovieCell extends React.Component<MovieCellProps> {
         const movie: Movie = this.movie;
         return (
             <p>
-                {movie.title} ({movie.year})
+                {movie.Title} ({movie.Year})
             </p>
         );
     }

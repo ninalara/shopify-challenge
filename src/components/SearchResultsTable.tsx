@@ -8,7 +8,7 @@ export interface SearchResultsTableProps {
 }
 class SearchResultsTable extends React.Component<SearchResultsTableProps> {
     private searchResults: Movies;
-    private api = new useMovieResults();
+    // private api = new useMovieResults();
     constructor(props: SearchResultsTableProps) {
         super(props);
         this.searchResults = [];
@@ -16,12 +16,12 @@ class SearchResultsTable extends React.Component<SearchResultsTableProps> {
 
     render(): JSX.Element {
         const searchedTitle = this.props.searchedTitle;
-        const searchResults = this.api.getProducts(searchedTitle);
+        // const searchResults = this.api.getProducts(searchedTitle);
         const rows: any = [];
 
         this.searchResults.forEach((searchResult) => {
             console.log(searchedTitle);
-            if (searchResult.title.indexOf(searchedTitle) === -1) {
+            if (searchResult.Title.indexOf(searchedTitle) === -1) {
                 return;
             }
             rows.push(<SearchResultsRow searchResult={searchResult} key={searchResult.imdbID} />);

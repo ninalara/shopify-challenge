@@ -1,7 +1,7 @@
 export interface Movie {
     imdbID: string;
-    title: string;
-    year: string;
+    Title: string;
+    Year: string;
 }
 
 export type Movies = Movie[];

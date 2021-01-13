@@ -11,7 +11,6 @@ class SearchBar extends React.Component<SearchBarProps> {
     constructor(props: SearchBarProps) {
         super(props);
         this.handleSearchedTitleChange = this.handleSearchedTitleChange.bind(this);
-        const xxx = new useMovieResults();
     }
 
     handleSearchedTitleChange(event: React.ChangeEvent<HTMLInputElement>) {
