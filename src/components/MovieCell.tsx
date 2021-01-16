@@ -1,25 +1,20 @@
+/* eslint react/prop-types: 0 */
 import React from 'react';
 import { Movie } from '../types/Movie';
 
-export interface MovieCellProps {
+interface Props {
     movie: Movie;
 }
 
-class MovieCell extends React.Component<MovieCellProps> {
-    private movie: Movie;
-    constructor(props: MovieCellProps) {
-        super(props);
-        const { movie } = this.props;
-        this.movie = movie;
-    }
-    render(): JSX.Element {
-        const movie: Movie = this.movie;
-        return (
+const MovieCell: React.FC<Props> = ({ movie }) => {
+    return (
+        <div>
+            <img width="100" src={movie.Poster}></img>
             <p>
                 {movie.Title} ({movie.Year})
             </p>
-        );
-    }
-}
+        </div>
+    );
+};
 
 export default MovieCell;

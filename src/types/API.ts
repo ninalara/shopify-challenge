@@ -1,9 +1,11 @@
 interface Init {
     status: 'init';
+    payload: undefined;
 }
 
 interface Loading {
     status: 'loading';
+    payload: undefined;
 }
 
 interface Loaded<T> {

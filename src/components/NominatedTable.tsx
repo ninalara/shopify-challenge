@@ -1,33 +1,28 @@
+/* eslint react/prop-types: 0 */
 import React from 'react';
-import { Movies } from '../types/Movie';
+import { Movie, Movies } from '../types/Movie';
 import NominatedRow from './NominatedRow';
 
-export interface NominatedTableProps {
+interface Props {
     nominatedMovies: Movies;
+    onRemove: (searchResult: Movie) => void;
 }
 
-class NominatedTable extends React.Component<NominatedTableProps> {
-    private nominatedMovies: Movies;
-    constructor(props: NominatedTableProps) {
-        super(props);
-        const { nominatedMovies } = this.props;
-        this.nominatedMovies = nominatedMovies;
-    }
-
-    render(): JSX.Element {
-        const rows: any = [];
-
-        this.nominatedMovies.forEach((nominatedMovie) => {
-            rows.push(<NominatedRow nominatedMovie={nominatedMovie} key={nominatedMovie.imdbID} />);
+const NominatedTable: React.FC<Props> = ({ nominatedMovies, onRemove }) => {
+    const nominatedMovieRows: JSX.Element[] = [];
+    if (nominatedMovies != undefined) {
+        nominatedMovies.forEach((nominatedMovie) => {
+            nominatedMovieRows.push(
+                <NominatedRow key={nominatedMovie.imdbID} nominatedMovie={nominatedMovie} onRemove={onRemove} />,
+            );
         });
-
-        return (
-            <table>
-                <th>Nominations</th>
-                <tbody>{rows}</tbody>
-            </table>
-        );
     }
-}
+    return (
+        <table>
+            <th>Nominations</th>
+            <tbody>{nominatedMovieRows}</tbody>
+        </table>
+    );
+};
 
 export default NominatedTable;

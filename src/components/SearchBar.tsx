@@ -1,29 +1,27 @@
+/* eslint react/prop-types: 0 */
 import React from 'react';
-export interface SearchBarProps {
+interface Props {
     searchedTitle: string;
     onSearchedTitleChange: (searchedTitle: string) => void;
 }
 
-class SearchBar extends React.Component<SearchBarProps> {
-    constructor(props: SearchBarProps) {
-        super(props);
-        this.handleSearchedTitleChange = this.handleSearchedTitleChange.bind(this);
-    }
+const SearchBar: React.FC<Props> = ({ searchedTitle, onSearchedTitleChange }) => {
+    const handleSearchedTitleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        event.preventDefault();
+        onSearchedTitleChange(event.target.value);
+    };
+    const onEnter = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+        if (event.key === 'Enter') event.preventDefault();
+    };
 
-    handleSearchedTitleChange(event: React.ChangeEvent<HTMLInputElement>): void {
-        this.props.onSearchedTitleChange(event.target.value);
-    }
-
-    render(): JSX.Element {
-        return (
-            <>
-                <label>Movie Title</label>
-                <form>
-                    <input type="text" value={this.props.searchedTitle} onChange={this.handleSearchedTitleChange} />
-                </form>
-            </>
-        );
-    }
-}
+    return (
+        <>
+            <label>Movie Title</label>
+            <form>
+                <input type="text" value={searchedTitle} onChange={handleSearchedTitleChange} onKeyDown={onEnter} />
+            </form>
+        </>
+    );
+};
 
 export default SearchBar;
