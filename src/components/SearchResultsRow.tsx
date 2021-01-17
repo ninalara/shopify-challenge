@@ -23,16 +23,24 @@ const SearchResultsRow: React.FC<Props> = ({ searchResult, nominatedMovies, onAd
     // }
 
     return (
-        <tr>
-            <td>
-                <MovieCell movie={searchResult} />
-            </td>
-            <td>
+        <div className="searchResult col">
+            <img width="100" src={searchResult.Poster}></img>
+            <div className="button">
                 <button type="button" onClick={handleClick} disabled={searchResult.isNominated || has5Nominations}>
                     Nominate
                 </button>
-            </td>
-        </tr>
+            </div>
+        </div>
+        // <tr>
+        //     <td>
+        //         <MovieCell movie={searchResult} />
+        //     </td>
+        //     <td>
+        //         <button type="button" onClick={handleClick} disabled={searchResult.isNominated || has5Nominations}>
+        //             Nominate
+        //         </button>
+        //     </td>
+        // </tr>
     );
 };
 

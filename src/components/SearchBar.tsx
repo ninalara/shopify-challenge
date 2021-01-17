@@ -15,12 +15,33 @@ const SearchBar: React.FC<Props> = ({ searchedTitle, onSearchedTitleChange }) =>
     };
 
     return (
-        <>
-            <label>Movie Title</label>
-            <form>
-                <input type="text" value={searchedTitle} onChange={handleSearchedTitleChange} onKeyDown={onEnter} />
-            </form>
-        </>
+        <div className="row">
+            {/* <div className="col-12 searchBar">
+                <input
+                    type="text"
+                    placeholder="Search"
+                    value={searchedTitle}
+                    onChange={handleSearchedTitleChange}
+                    onKeyDown={onEnter}
+                />
+            </div> */}
+            <div className="col-4"></div>
+            <div className="input-group col-4 searchBar">
+                <div className="input-group-prepend">
+                    <span className="input-group-text" id="basic-addon1">
+                        @
+                    </span>
+                </div>
+                <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Username"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                ></input>
+            </div>
+            <div className="col-4"></div>
+        </div>
     );
 };
 

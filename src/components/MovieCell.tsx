@@ -10,9 +10,9 @@ const MovieCell: React.FC<Props> = ({ movie }) => {
     return (
         <div>
             <img width="100" src={movie.Poster}></img>
-            <p>
+            {/* <p>
                 {movie.Title} ({movie.Year})
-            </p>
+            </p> */}
         </div>
     );
 };

@@ -1,16 +1,20 @@
+import { API } from '../types/API';
+import { Movies } from '../types/Movie';
 import useMovieResultsService from './useMovieResults.service';
 
-const simplifySearchedTitle = (title: string): string => {
+// const searchedTitle = useSimplifySearchedTitle(title);
+const useSimplifySearchedTitle = (title: string): [string, API<Movies>] => {
     // result will be empty if the the searchedTitle's last character is a space
     const isLastCharSpace = title.slice(-1) === ' ';
     if (isLastCharSpace) title = title.slice(0, -1);
 
-    const searchResults = useMovieResultsService(title);
-    while (searchResults.status !== 'loaded') {}
-    if (searchResults.payload.length === 0) {
-        title = title.slice(0, title.lastIndexOf(' ') - 1);
+    let searchResults = useMovieResultsService(title);
+    if (searchResults.status === 'loaded' && searchResults.payload === undefined) {
+        title = title.slice(0, title.lastIndexOf(' '));
     }
-    return title;
+    console.log(title);
+    searchResults = useMovieResultsService(title);
+    return [title, searchResults];
 };
 
-export default simplifySearchedTitle;
+export default useSimplifySearchedTitle;

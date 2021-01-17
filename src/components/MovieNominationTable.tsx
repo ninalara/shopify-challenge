@@ -19,23 +19,24 @@ const MovieNominationTable: React.FC = () => {
     };
 
     return (
-        <div>
-            <h2>The Shoppies</h2>
+        <>
             <SearchBar searchedTitle={searchedTitle} onSearchedTitleChange={handleSearchedTitleChange} />
-            <tr>
-                <tbody>
+            <div className="row">
+                <div className="col-1"></div>
+                <div className="col-6">
                     <SearchResultsTable
                         searchedTitle={searchedTitle}
                         nominatedMovies={nominatedMovies}
                         onAddNominatedMovie={onAddNominatedMovie}
                     />
-                </tbody>
-                <th> </th>
-                <tbody>
+                </div>
+                <div className="col-1"></div>
+                <div className="col-3">
                     <NominatedTable nominatedMovies={nominatedMovies} onRemove={onRemoveNominatedMovie} />
-                </tbody>
-            </tr>
-        </div>
+                </div>
+                <div className="col-1"></div>
+            </div>
+        </>
     );
 };
 
