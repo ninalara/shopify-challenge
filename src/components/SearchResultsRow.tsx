@@ -1,19 +1,26 @@
 /* eslint react/prop-types: 0 */
 
 import React from 'react';
-import { Movie } from '../types/Movie';
+import { Movie, Movies } from '../types/Movie';
 import MovieCell from './MovieCell';
 
 interface Props {
     searchResult: Movie;
+    nominatedMovies: Movies;
     onAddNominatedMovie: (searchResult: Movie) => void;
 }
 
-const SearchResultsRow: React.FC<Props> = ({ searchResult, onAddNominatedMovie }) => {
+const SearchResultsRow: React.FC<Props> = ({ searchResult, nominatedMovies, onAddNominatedMovie }) => {
     const handleClick = (): void => {
         searchResult.isNominated = true;
         onAddNominatedMovie(searchResult);
     };
+
+    const has5Nominations = nominatedMovies.length === 5;
+
+    // if (has5Nominations) {
+    //     alert('You have your 5 nominations!');
+    // }
 
     return (
         <tr>
@@ -21,7 +28,7 @@ const SearchResultsRow: React.FC<Props> = ({ searchResult, onAddNominatedMovie }
                 <MovieCell movie={searchResult} />
             </td>
             <td>
-                <button type="button" onClick={handleClick} disabled={searchResult.isNominated}>
+                <button type="button" onClick={handleClick} disabled={searchResult.isNominated || has5Nominations}>
                     Nominate
                 </button>
             </td>
